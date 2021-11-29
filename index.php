@@ -32,7 +32,7 @@
                             <td></td>
                             <td></td>
                             <td></td>
-                            <td> <a href="">show</a> </td>
+                            <td> <a href="./show_mission.php?id=<?= $mission->getId() ?>">show</a> </td>
                         </tr>
                     </tbody>
                 </table>
