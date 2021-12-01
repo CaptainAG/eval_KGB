@@ -43,17 +43,22 @@ class AgentController{
 
     }
 
-    public function getAll(): array
+    
+    public function getAll()
     {
-        $agent= [];
-        $req= $this->db->query("SELECT * FROM `Agent` ORDER BY nom_identification");
+        $agent=[];
+        $req= $this->db->prepare("SELECT * FROM `Agent` ORDER BY nom_identification");
+        $req->execute();
         $datas= $req->fetchAll();
         foreach($datas as $data){
             $agent= new Agent($data);
-            $agent[]= $agent;
+           // $agent[]= $agent;
         }
+        $req->closeCursor();
         return $agent;
     }
+
+   
 
     public function update(Agent $agent)
     {

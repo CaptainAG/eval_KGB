@@ -1,7 +1,7 @@
 <?php 
-include("./authentication.php"); 
+include("authentication.php"); 
 
-require("./header.php");
+require("./asset/header.php");
 
 ?>
 
@@ -28,6 +28,6 @@ require("./header.php");
     
 <?php
 
-require("./footer.php");
+require("./asset/footer.php");
 
 ?>

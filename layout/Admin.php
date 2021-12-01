@@ -3,17 +3,25 @@
 session_start();
 
    
-require("header.php");
+require("../asset/header.php");
 require("../Controller/MissionController.php");
 $controller= new MissionController();
 $missions= $controller->getAll();
 $error= null;
 
+require("../asset/navbar.php")
 ?>
         <div class="container-xxl">
             <div class="row justify-content-center text-center">
                 <h1>Missions</h1>
-                <a href='./logout.php'><span>Déconnexion</span></a>
+                <div class="boutton d-flex justify-content-between">
+                <a href='#' class="btn btn-primary">Ajouter un Admin</a> 
+                
+                <a href='#' class="btn btn-warning">Ajouter une Cible</a>
+                <a href='#' class="btn btn-info">Ajouter un Contact</a> 
+                <a href='#' class="btn btn-secondary">Ajouter une Planque</a> 
+                <a href='#' class="btn btn-dark">Ajouter une Mission</a>
+                </div>
                 <table class="table table-striped table-hover table-responsive text-center">
                     <thead>
                         <tr>
@@ -43,4 +51,4 @@ $error= null;
             </div>
         </div>
 
-<?php require("footer.php") ?>
+<?php require("../asset/footer.php") ?>

@@ -7,6 +7,6 @@
   
   {
     // Redirection vers la page de connexion
-    header("Location: ../index.php");
+    header("Location: index.php");
   }
 ?>

@@ -31,7 +31,7 @@
                 "Prenom"=> $user["Prenom"]
             ];
 
-            header("location: Admin.php");
+            header("location: ./layout/Admin.php");
 
 
 
