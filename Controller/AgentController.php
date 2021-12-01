@@ -1,6 +1,6 @@
 <?php 
 
-require("../Model/Agent.php"); 
+require("Agent.php"); 
 
 class AgentController{
     private $db;

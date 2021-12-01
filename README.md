@@ -1,7 +1,7 @@
 # eval_KGB
 Projet d'étude : GRADUATE Developpeur Web / Web Mobile URL site : 
 
-Pour tester l'appli en tant qu'Admin, utilisez le compte suivant : email :  mpd : 
+Pour tester l'appli en tant qu'Admin, utilisez le compte suivant : email :JohnDoe@gmail.com  mpd : adminKGB
 
 Application réaliser avec le framework Symfony Contexte projet : 
 

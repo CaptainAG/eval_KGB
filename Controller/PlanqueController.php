@@ -1,6 +1,6 @@
 <?php 
 
-require("../Model/Planque.php");
+require("Planque.php");
 
 class PlanqueController{
     private $db;

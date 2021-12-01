@@ -1,7 +1,10 @@
 <?php 
 
-require("./layout/header.php");
-require("./Controller/MissionController.php");
+session_start();
+
+   
+require("header.php");
+require("../Controller/MissionController.php");
 $controller= new MissionController();
 $missions= $controller->getAll();
 $error= null;
@@ -9,7 +12,8 @@ $error= null;
 ?>
         <div class="container-xxl">
             <div class="row justify-content-center text-center">
-                <h1>Missio<a class="login" href="./layout/login.php" style="text-decoration: none; color: black;" >n</a>s</h1>
+                <h1>Missions</h1>
+                <a href='./logout.php'><span>Déconnexion</span></a>
                 <table class="table table-striped table-hover table-responsive text-center">
                     <thead>
                         <tr>
@@ -39,4 +43,4 @@ $error= null;
             </div>
         </div>
 
-<?php require("./layout/footer.php") ?>
+<?php require("footer.php") ?>

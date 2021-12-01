@@ -129,6 +129,9 @@ CREATE TABLE Admin
 
 
 
+insert into  Admin (Nom, Prenom, Email, Password, Date_creation)
+values
+('John','Doe', 'JohnDoe@gmail.com','$2y$10$qW5O02qav3PkTkErlWUFtuJvBygOyMdtViIRPIcs0wCqFDlzrb6yi','23/10/2021');
 
 
 insert into Statut (Statut)

@@ -1,6 +1,6 @@
 <?php 
 
-require("../Model/Specialite.php"); 
+require("Specialite.php"); 
 
 class SpecialiteController{
     private $db;

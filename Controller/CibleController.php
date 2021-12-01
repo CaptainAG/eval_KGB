@@ -1,6 +1,6 @@
 <?php 
 
-require("../Model/Cible.php");
+require("Cible.php");
 
 class CibleController{
     private $db;

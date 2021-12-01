@@ -1,8 +1,8 @@
 <?php 
 
-require("../Model/Mission.php");
+require("Mission.php");
 
-class PlanqueController{
+class MissionController{
     private $db;
 
     public function __construct()
@@ -39,7 +39,27 @@ class PlanqueController{
         $req->bindValue(":Date_debut",$mission->getDate_debut(), PDO::PARAM_STR);
         $req->bindValue(":Date_fin",$mission->getDate_fin(), PDO::PARAM_STR);
         $req->execute();
+
+        return $mission;
     }
+
+
+    public function getAll():array
+    {
+        $missions= [];
+        $req= $this->db->query("SELECT * FROM `Mission` ORDER BY Titre");
+        $datas=$req->fetchAll();
+        foreach($datas as $data){
+        $mission= new Mission($data);
+        $missions[]= $mission;
+        }
+
+        return $missions;
+
+        
+        
+    }
+
 
     public function update(Mission $mission)
     {
@@ -58,7 +78,9 @@ class PlanqueController{
         $req->bindValue(":Specialite",$mission->getSpecialite(), PDO::PARAM_STR);
         $req->bindValue(":Date_debut",$mission->getDate_debut(), PDO::PARAM_STR);
         $req->bindValue(":Date_fin",$mission->getDate_fin(), PDO::PARAM_STR);
-        $req->execute();        
+        $req->execute();      
+        
+    
     }
 
     public function delete(int $id)

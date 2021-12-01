@@ -1,6 +1,6 @@
 <?php 
 
-require("../Model/Contact.php");
+require("Contact.php");
 
 class ContactController{
     private $db;
