@@ -23,26 +23,34 @@ class MissionController{
 
     public function create(Mission $mission)
     {
-        $req=$this->db->prepare("INSERT INTO `Mission`(Titre,Description,Nom_de_code,Pays,Agent,Contact,Cible,Type_Mission,Statut,Planque,Specialite,Date_debut,Date_fin) VALUE (:Titre,:Description, :Nom_de_code, :Pays, :Agent, :Contact,:Cible, :Type_Mission, :Statut, :Planque, :Specialite, :Date_debut, :Date_fin)");
+        $req=$this->db->prepare("INSERT INTO `Mission`(titre,description,nom_de_code,pays,agent,contact,cible,type_mission,statut,planque,specialite,date_debut,date_fin) VALUE (:titre,:description, :nom_de_code, :pays, :agent, :contact,:cible, :type_mission, :statut, :planque, :specialite, :date_debut, :date_fin)");
 
-        $req->bindValue(":Titre",$mission->getTitre(), PDO::PARAM_STR);
-        $req->bindValue(":Description",$mission->getDescription(), PDO::PARAM_STR);
-        $req->bindValue(":Nom_de_code",$mission->getNom_de_code(), PDO::PARAM_STR);
-        $req->bindValue(":Pays",$mission->getPays(), PDO::PARAM_STR);
-        $req->bindValue(":Agent",$mission->getAgent(), PDO::PARAM_STR);
-        $req->bindValue(":Contact",$mission->getContact(), PDO::PARAM_STR);
-        $req->bindValue(":Cible",$mission->getCible(), PDO::PARAM_STR);
-        $req->bindValue(":Type_Mission",$mission->getType_Mission(), PDO::PARAM_STR);
-        $req->bindValue(":Statut",$mission->getStatut(), PDO::PARAM_STR);
-        $req->bindValue(":Planque",$mission->getPlanque(), PDO::PARAM_STR);
-        $req->bindValue(":Specialite",$mission->getSpecialite(), PDO::PARAM_STR);
-        $req->bindValue(":Date_debut",$mission->getDate_debut(), PDO::PARAM_STR);
-        $req->bindValue(":Date_fin",$mission->getDate_fin(), PDO::PARAM_STR);
+        $req->bindValue(":titre",$mission->getTitre(), PDO::PARAM_STR);
+        $req->bindValue(":description",$mission->getDescription(), PDO::PARAM_STR);
+        $req->bindValue(":nom_de_code",$mission->getNom_de_code(), PDO::PARAM_STR);
+        $req->bindValue(":pays",$mission->getPays(), PDO::PARAM_STR);
+        $req->bindValue(":agent",$mission->getAgent(), PDO::PARAM_STR);
+        $req->bindValue(":contact",$mission->getContact(), PDO::PARAM_STR);
+        $req->bindValue(":cible",$mission->getCible(), PDO::PARAM_STR);
+        $req->bindValue(":type_mission",$mission->getType_Mission(), PDO::PARAM_STR);
+        $req->bindValue(":statut",$mission->getStatut(), PDO::PARAM_STR);
+        $req->bindValue(":planque",$mission->getPlanque(), PDO::PARAM_STR);
+        $req->bindValue(":specialite",$mission->getSpecialite(), PDO::PARAM_STR);
+        $req->bindValue(":date_debut",$mission->getDate_debut(), PDO::PARAM_STR);
+        $req->bindValue(":date_fin",$mission->getDate_fin(), PDO::PARAM_STR);
         $req->execute();
 
         return $mission;
     }
 
+    public function get(int $id)
+    {
+        $req= $this->db->prepare("SELECT * FROM `Mission` WHERE id= :id");
+        $req->execute([":id" => $id]);
+        $data= $req->fetch();
+        $planque = new Mission($data);
+        return $planque;
+    }
 
     public function getAll():array
     {
@@ -63,21 +71,21 @@ class MissionController{
 
     public function update(Mission $mission)
     {
-        $req=$this->db->prepare("UPDATE `Mission` SET Titre= :Titre,Description=:Description, Nom_de_code=:Nom_de_code, Pays=:Pays, Agent=:Agent, Contact=:Contact,Cible=:Cible, Type_mission=:Type_Mission, Statut=:Statut, Planque=:Planque, Specialite=:Specialite, Date_debut=:Date_debut, Date_fin=:Date_fin WHERE id=$_GET[id]");
+        $req=$this->db->prepare("UPDATE `Mission` SET titre= :titre,description=:description, nom_de_code=:nom_de_code, pays=:pays, agent=:agent, contact=:contact,cible=:cible, type_mission=:type_mission, statut=:statut, planque=:planque, specialite=:specialite, date_debut=:date_debut, date_fin=:date_fin WHERE id=$_GET[id]");
 
-        $req->bindValue(":Titre",$mission->getTitre(), PDO::PARAM_STR);
-        $req->bindValue(":Description",$mission->getDescription(), PDO::PARAM_STR);
-        $req->bindValue(":Nom_de_code",$mission->getNom_de_code(), PDO::PARAM_STR);
-        $req->bindValue(":Pays",$mission->getPays(), PDO::PARAM_STR);
-        $req->bindValue(":Agent",$mission->getAgent(), PDO::PARAM_STR);
-        $req->bindValue(":Contact",$mission->getContact(), PDO::PARAM_STR);
-        $req->bindValue(":Cible",$mission->getCible(), PDO::PARAM_STR);
-        $req->bindValue(":Type_Mission",$mission->getType_Mission(), PDO::PARAM_STR);
-        $req->bindValue(":Statut",$mission->getStatut(), PDO::PARAM_STR);
-        $req->bindValue(":Planque",$mission->getPlanque(), PDO::PARAM_STR);
-        $req->bindValue(":Specialite",$mission->getSpecialite(), PDO::PARAM_STR);
-        $req->bindValue(":Date_debut",$mission->getDate_debut(), PDO::PARAM_STR);
-        $req->bindValue(":Date_fin",$mission->getDate_fin(), PDO::PARAM_STR);
+        $req->bindValue(":titre",$mission->getTitre(), PDO::PARAM_STR);
+        $req->bindValue(":description",$mission->getDescription(), PDO::PARAM_STR);
+        $req->bindValue(":nom_de_code",$mission->getNom_de_code(), PDO::PARAM_STR);
+        $req->bindValue(":pays",$mission->getPays(), PDO::PARAM_STR);
+        $req->bindValue(":agent",$mission->getAgent(), PDO::PARAM_STR);
+        $req->bindValue(":contact",$mission->getContact(), PDO::PARAM_STR);
+        $req->bindValue(":cible",$mission->getCible(), PDO::PARAM_STR);
+        $req->bindValue(":type_Mission",$mission->getType_Mission(), PDO::PARAM_STR);
+        $req->bindValue(":statut",$mission->getStatut(), PDO::PARAM_STR);
+        $req->bindValue(":planque",$mission->getPlanque(), PDO::PARAM_STR);
+        $req->bindValue(":specialite",$mission->getSpecialite(), PDO::PARAM_STR);
+        $req->bindValue(":date_debut",$mission->getDate_debut(), PDO::PARAM_STR);
+        $req->bindValue(":date_fin",$mission->getDate_fin(), PDO::PARAM_STR);
         $req->execute();      
         
     

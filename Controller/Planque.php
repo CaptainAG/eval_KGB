@@ -2,9 +2,10 @@
 
 class Planque 
 {
+    private $id;
     private $Code;
     private $Adresse;
-    private $Types;
+    private $Type;
     private $Pays;
 
     public function __construct (array $data)
@@ -19,6 +20,26 @@ class Planque
                 $this-> $method($value);
             }
         }
+    }
+
+    /**
+     * Get the value of id
+     */ 
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set the value of id
+     *
+     * @return  self
+     */ 
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
     }
 
     /**
@@ -64,9 +85,9 @@ class Planque
     /**
      * Get the value of Types
      */ 
-    public function getTypes()
+    public function getType()
     {
-        return $this->Types;
+        return $this->Type;
     }
 
     /**
@@ -74,9 +95,9 @@ class Planque
      *
      * @return  self
      */ 
-    public function setTypes($Types)
+    public function setType($Type)
     {
-        $this->Types = $Types;
+        $this->Type = $Type;
 
         return $this;
     }
@@ -100,4 +121,6 @@ class Planque
 
         return $this;
     }
+
+
 }

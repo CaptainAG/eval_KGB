@@ -22,39 +22,55 @@ class CibleController{
     }
 
     public function create(Cible $cible){
-        $req= $this->db->prepare("INSERT INTO `Cible`(Nom, Prenom,Date_de_naissance,Nom_de_code,Nationalite) VALUE (:Nom, :Prenom,:Date_de_naissance,:Nom_de_code,:Nationalite) ");
+        $req= $this->db->prepare("INSERT INTO `Cible`(nom, prenom,date_de_naissance,nom_de_code,nationalite) VALUE (:nom, :prenom,:date_de_naissance,:nom_de_code,:nationalite) ");
 
-        $req->bindValue(":Nom",$cible->getNom(), PDO::PARAM_STR);
-        $req->bindValue(":Prenom",$cible->getPrenom(), PDO::PARAM_STR);
-        $req->bindValue(":Date_de_naissance",$cible->getDate_de_naissance(), PDO::PARAM_STR);
-        $req->bindValue(":Nom_de_code",$cible->getnom_de_code(), PDO::PARAM_STR);
-        $req->bindValue(":Nationalite",$cible->getNationalite(), PDO::PARAM_STR);
+        $req->bindValue(":nom",$cible->getNom(), PDO::PARAM_STR);
+        $req->bindValue(":prenom",$cible->getPrenom(), PDO::PARAM_STR);
+        $req->bindValue(":date_de_naissance",$cible->getDate_de_naissance(), PDO::PARAM_STR);
+        $req->bindValue(":nom_de_code",$cible->getnom_de_code(), PDO::PARAM_STR);
+        $req->bindValue(":nationalite",$cible->getNationalite(), PDO::PARAM_STR);
         $req->execute();
     }
 
-    public function get(string $nom_de_code)
+    public function get(int $id)
     {
-        $req= $this->db->prepare("SELECT * FROM `Agent` WHERE nom_de_code=:nom_de_code ");
-        $req->execute([":nom_de_code" => $nom_de_code]);
+        $req= $this->db->prepare("SELECT * FROM `Cible` WHERE id =:id ");
+        $req->execute([":id" => $id]);
         $data= $req->fetch();
         $cible = new Cible($data);
         return $cible;
 
     }
 
-    public function update(Cible $cible){
-        $req= $this->db->prepare("UPDATE `Cible` SET Nom=:Nom, Prenom=:Prenom,Date_de_naissance=:Date_de_naissance,Nom_de_code=:Nom_de_code, Nationalite= :Nationalite");
+    public function getAll():array
+    {
+        $cibles= [];
+        $req= $this->db->query("SELECT * FROM `Cible` ORDER BY Nom_de_code");
+        $datas=$req->fetchAll();
+        foreach($datas as $data){
+        $cible= new Cible($data);
+        $cibles[]= $cible;
+        }
 
-        $req->bindValue(":Nom",$cible->getNom(), PDO::PARAM_STR);
-        $req->bindValue(":Prenom",$cible->getPrenom(), PDO::PARAM_STR);
-        $req->bindValue(":Date_de_naissance",$cible->getDate_de_naissance(), PDO::PARAM_STR);
-        $req->bindValue(":Nom_de_code",$cible->getnom_de_code(), PDO::PARAM_STR);
-        $req->bindValue(":Nationalite",$cible->getNationalite(), PDO::PARAM_STR);
+        return $cibles;
+
+        
+        
+    }
+
+    public function update(Cible $cible){
+        $req= $this->db->prepare("UPDATE `Cible` SET nom=:nom, prenom=:prenom,date_de_naissance=:date_de_naissance,dom_de_code=:dom_de_code, dationalite= :dationalite");
+
+        $req->bindValue(":dom",$cible->getNom(), PDO::PARAM_STR);
+        $req->bindValue(":prenom",$cible->getPrenom(), PDO::PARAM_STR);
+        $req->bindValue(":date_de_naissance",$cible->getDate_de_naissance(), PDO::PARAM_STR);
+        $req->bindValue(":nom_de_code",$cible->getnom_de_code(), PDO::PARAM_STR);
+        $req->bindValue(":nationalite",$cible->getNationalite(), PDO::PARAM_STR);
         $req->execute();
     }
 
     public function delete(int $id){
-        $req=$this->db->prepare("DELETE FROM `Cible` WHERE id= : id");
+        $req=$this->db->prepare("DELETE FROM `Cible` WHERE id= :id");
         $req->bindValue(":id", $id, PDO::PARAM_INT);
         $req->execute();
     }

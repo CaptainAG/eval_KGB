@@ -2,19 +2,20 @@
 
 class Mission 
 {
-    private $Titre; 
-    private $Description;
-    private $Nom_de_code ;
-    private $Pays;
-    private $Agent;
-    private $Contact;
-    private $Cible;
-    private $Type_Mission;
-    private $Statut; 
-    private $Planque; 
-    private $Specialite;
-    private $Date_debut; 
-    private $Date_fin; 
+    private $id;
+    private $titre; 
+    private $description;
+    private $nom_de_code ;
+    private $pays;
+    private $agent;
+    private $contact;
+    private $cible;
+    private $type_mission;
+    private $statut; 
+    private $planque; 
+    private $specialite;
+    private $date_debut; 
+    private $date_fin; 
 
     public function __construct (array $data)
     {
@@ -31,265 +32,293 @@ class Mission
     }
 
     
-
+    /**
+     * Get the value of id
+     */ 
+    public function getId()
+    {
+        return $this->id;
+    }
 
     /**
-     * Get the value of Titre
+     * Set the value of id
+     *
+     * @return  self
+     */ 
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
+    
+
+    
+
+    /**
+     * Get the value of titre
      */ 
     public function getTitre()
     {
-        return $this->Titre;
+        return $this->titre;
     }
 
     /**
-     * Set the value of Titre
+     * Set the value of titre
      *
      * @return  self
      */ 
-    public function setTitre($Titre)
+    public function setTitre($titre)
     {
-        $this->Titre = $Titre;
+        $this->titre = $titre;
 
         return $this;
     }
 
     /**
-     * Get the value of Description
+     * Get the value of description
      */ 
     public function getDescription()
     {
-        return $this->Description;
+        return $this->description;
     }
 
     /**
-     * Set the value of Description
+     * Set the value of description
      *
      * @return  self
      */ 
-    public function setDescription($Description)
+    public function setDescription($description)
     {
-        $this->Description = $Description;
+        $this->description = $description;
 
         return $this;
     }
 
     /**
-     * Get the value of Nom_de_code
+     * Get the value of nom_de_code
      */ 
     public function getNom_de_code()
     {
-        return $this->Nom_de_code;
+        return $this->nom_de_code;
     }
 
     /**
-     * Set the value of Nom_de_code
+     * Set the value of nom_de_code
      *
      * @return  self
      */ 
-    public function setNom_de_code($Nom_de_code)
+    public function setNom_de_code($nom_de_code)
     {
-        $this->Nom_de_code = $Nom_de_code;
+        $this->nom_de_code = $nom_de_code;
 
         return $this;
     }
 
     /**
-     * Get the value of Pays
+     * Get the value of pays
      */ 
     public function getPays()
     {
-        return $this->Pays;
+        return $this->pays;
     }
 
     /**
-     * Set the value of Pays
+     * Set the value of pays
      *
      * @return  self
      */ 
-    public function setPays($Pays)
+    public function setPays($pays)
     {
-        $this->Pays = $Pays;
+        $this->pays = $pays;
 
         return $this;
     }
 
     /**
-     * Get the value of Agent
+     * Get the value of agent
      */ 
     public function getAgent()
     {
-        return $this->Agent;
+        return $this->agent;
     }
 
     /**
-     * Set the value of Agent
+     * Set the value of agent
      *
      * @return  self
      */ 
-    public function setAgent($Agent)
+    public function setAgent($agent)
     {
-        $this->Agent = $Agent;
+        $this->agent = $agent;
 
         return $this;
     }
 
     /**
-     * Get the value of Contact
+     * Get the value of contact
      */ 
     public function getContact()
     {
-        return $this->Contact;
+        return $this->contact;
     }
 
     /**
-     * Set the value of Contact
+     * Set the value of contact
      *
      * @return  self
      */ 
-    public function setContact($Contact)
+    public function setContact($contact)
     {
-        $this->Contact = $Contact;
+        $this->contact = $contact;
 
         return $this;
     }
 
     /**
-     * Get the value of Cible
+     * Get the value of cible
      */ 
     public function getCible()
     {
-        return $this->Cible;
+        return $this->cible;
     }
 
     /**
-     * Set the value of Cible
+     * Set the value of cible
      *
      * @return  self
      */ 
-    public function setCible($Cible)
+    public function setCible($cible)
     {
-        $this->Cible = $Cible;
+        $this->cible = $cible;
+
+        return $this;
+    }
+
+   /**
+     * Get the value of type_mission
+     */ 
+    public function getType_mission()
+    {
+        return $this->type_mission;
+    }
+
+    /**
+     * Set the value of type_mission
+     *
+     * @return  self
+     */ 
+    public function setType_mission($type_mission)
+    {
+        $this->type_mission = $type_mission;
 
         return $this;
     }
 
     /**
-     * Get the value of Type_Mission
-     */ 
-    public function getType_Mission()
-    {
-        return $this->Type_Mission;
-    }
-
-    /**
-     * Set the value of Type_Mission
-     *
-     * @return  self
-     */ 
-    public function setType_Mission($Type_Mission)
-    {
-        $this->Type_Mission = $Type_Mission;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of Statut
+     * Get the value of statut
      */ 
     public function getStatut()
     {
-        return $this->Statut;
+        return $this->statut;
     }
 
     /**
-     * Set the value of Statut
+     * Set the value of statut
      *
      * @return  self
      */ 
-    public function setStatut($Statut)
+    public function setStatut($statut)
     {
-        $this->Statut = $Statut;
+        $this->statut = $statut;
 
         return $this;
     }
 
     /**
-     * Get the value of Planque
+     * Get the value of planque
      */ 
     public function getPlanque()
     {
-        return $this->Planque;
+        return $this->planque;
     }
 
     /**
-     * Set the value of Planque
+     * Set the value of planque
      *
      * @return  self
      */ 
-    public function setPlanque($Planque)
+    public function setPlanque($planque)
     {
-        $this->Planque = $Planque;
+        $this->planque = $planque;
 
         return $this;
     }
 
     /**
-     * Get the value of Specialite
+     * Get the value of specialite
      */ 
     public function getSpecialite()
     {
-        return $this->Specialite;
+        return $this->specialite;
     }
 
     /**
-     * Set the value of Specialite
+     * Set the value of specialite
      *
      * @return  self
      */ 
-    public function setSpecialite($Specialite)
+    public function setSpecialite($specialite)
     {
-        $this->Specialite = $Specialite;
+        $this->specialite = $specialite;
 
         return $this;
     }
 
     /**
-     * Get the value of Date_debut
+     * Get the value of date_debut
      */ 
     public function getDate_debut()
     {
-        return $this->Date_debut;
+        return $this->date_debut;
     }
 
     /**
-     * Set the value of Date_debut
+     * Set the value of date_debut
      *
      * @return  self
      */ 
-    public function setDate_debut($Date_debut)
+    public function setDate_debut($date_debut)
     {
-        $this->Date_debut = $Date_debut;
+        $this->date_debut = $date_debut;
 
         return $this;
     }
 
     /**
-     * Get the value of Date_fin
+     * Get the value of date_fin
      */ 
     public function getDate_fin()
     {
-        return $this->Date_fin;
+        return $this->date_fin;
     }
 
     /**
-     * Set the value of Date_fin
+     * Set the value of date_fin
      *
      * @return  self
      */ 
-    public function setDate_fin($Date_fin)
+    public function setDate_fin($date_fin)
     {
-        $this->Date_fin = $Date_fin;
+        $this->date_fin = $date_fin;
 
         return $this;
     }
+
+    
+
+    
+
+   
 }

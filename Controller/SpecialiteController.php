@@ -28,17 +28,22 @@ class SpecialiteController{
         $req->execute();        
     }
 
-    public function getAll() :array
+    public function getAll():array
     {
-       $specialite= [];
-       $req= $this->db->query("SELECT * FROM `Specialite` ORDER BY Specialite"); 
-       $datas= $req->fetchAll(); 
-       foreach($datas as $data){
-        $specialite = new Specialite($data);
-        $specialite[] = $specialite;
-       }
-       $req->closeCursor();
-       return $specialite;
+        $specialites= [];
+        $req= $this->db->query("SELECT * FROM `Specialite` ORDER BY Specialite");
+        $datas=$req->fetchAll();
+        foreach($datas as $data){
+        $specialite= new Specialite($data);
+        $specialites[]= $specialite;
+        }
+        $req->closeCursor();
+        return $specialites;
+
+        
+
+        
+        
     }
 
     public function update(Specialite $specialite)

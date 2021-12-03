@@ -10,19 +10,19 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="./Admin.php">Mission</a>
+          <a class="nav-link active" aria-current="page" href="./Admin_page.php">Mission</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="../layout/page_agent.php">Agent</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Cible</a>
+          <a class="nav-link" href="../layout/page_cible.php">Cible</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Contact</a>
+          <a class="nav-link" href="../layout/page_contact.php">Contact</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Planque</a>
+          <a class="nav-link" href="../layout/page_planque.php">Planque</a>
         </li>
       </ul>
       <form class="d-flex">

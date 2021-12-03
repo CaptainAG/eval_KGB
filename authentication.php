@@ -5,7 +5,7 @@
         ){
             include_once('config.php');
 
-            $sql= "SELECT * FROM `Admin` WHERE `Email`=:email";
+            $sql= "SELECT * FROM `Admin` WHERE `email`=:email";
 
             $query= $db->prepare($sql);
 
@@ -14,24 +14,24 @@
             $query->execute();
 
             $user = $query->fetch();
-            var_dump($user);
+            
             
 
             if(!$user){
                 die("L'utilisateur et/ou le mot de passe est incorrect ");
             }
-            if(!password_verify($_POST["password"],$user["Password"])){
+            if(!password_verify($_POST["password"],$user["password"])){
                 die("L'utilisateur et/ou le mot de passe est incorrect ");
             }
 
             session_start();
 
             $_SESSION["Admin"]= [
-                "Nom"=> $user["Nom"],
-                "Prenom"=> $user["Prenom"]
+                "nom"=> $user["nom"],
+                "prenom"=> $user["prenom"]
             ];
 
-            header("location: ./layout/Admin.php");
+            header("location: ./layout/Admin_page.php");
 
 
 

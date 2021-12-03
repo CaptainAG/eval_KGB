@@ -1,8 +1,8 @@
 <?php 
 
-require("Pays.php"); 
+require("Type.php"); 
 
-class CountryController{
+class TypeController{
     private $db;
 
     public function __construct()
@@ -21,19 +21,27 @@ class CountryController{
         }
     }
 
+    public function create (Type $type)
+    {
+        $req= $this->db->prepare("INSERT INTO `Type_Mission`(type) VALUE (:type) ");
+
+        $req->bindValue(":type",$type->getType(), PDO::PARAM_STR);
+        $req->execute();
+    }
+
     
 
     public function getAll():array
     {
-        $countrys= [];
-        $req= $this->db->query("SELECT * FROM `Pays` ORDER BY Nationalite");
+        $types= [];
+        $req= $this->db->query("SELECT * FROM `Type_Mission` ORDER BY type");
         $datas=$req->fetchAll();
         foreach($datas as $data){
-        $country= new Country($data);
-        $countrys[]= $country;
+        $type= new Type($data);
+        $types[]= $type;
         }
 
-        return $countrys;
+        return $types;
 
         
         

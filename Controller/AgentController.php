@@ -22,21 +22,21 @@ class AgentController{
     }
 
     public function create(Agent $agent){
-        $req= $this->db->prepare("INSERT INTO `Agent`(Nom, Prenom,Date_de_naissance,nom_identification,Nationalite,Specialite) VALUE (:Nom, :Prenom,:Date_de_naissance,:nom_dentification,:Nationalite,:Specialite) ");
+        $req= $this->db->prepare("INSERT INTO `Agent`(nom, prenom,date_de_naissance,nom_identification,nationalite,specialite) VALUE (:nom, :prenom,:date_de_naissance,:nom_identification,:nationalite,:specialite) ");
 
         $req->bindValue(":nom",$agent->getNom(), PDO::PARAM_STR);
         $req->bindValue(":prenom",$agent->getPrenom(), PDO::PARAM_STR);
-        $req->bindValue(":Date_de_naissance",$agent->getDate_de_naissance(), PDO::PARAM_STR);
-        $req->bindValue(":nom_Identification",$agent->getNom_identification(), PDO::PARAM_STR);
-        $req->bindValue(":Nationalite",$agent->getNationalite(), PDO::PARAM_STR);
-        $req->bindValue(":Specialite",$agent->getSpecialite(), PDO::PARAM_STR);
+        $req->bindValue(":date_de_naissance",$agent->getDate_de_naissance(), PDO::PARAM_STR);
+        $req->bindValue(":nom_identification",$agent->getNom_identification(), PDO::PARAM_STR);
+        $req->bindValue(":nationalite",$agent->getNationalite(), PDO::PARAM_STR);
+        $req->bindValue(":specialite",$agent->getSpecialite(), PDO::PARAM_STR);
         $req->execute();
     }
 
-    public function get(string $nom_identification)
+    public function get(int $id)
     {
-        $req= $this->db->prepare("SELECT * FROM `Agent` WHERE nom_identification=:nom_identification ");
-        $req->execute([":nom_identification" => $nom_identification]);
+        $req= $this->db->prepare("SELECT * FROM `Agent` WHERE id =:id ");
+        $req->execute([":id" => $id]);
         $data= $req->fetch();
         $agent = new Agent($data);
         return $agent;
@@ -44,32 +44,34 @@ class AgentController{
     }
 
     
-    public function getAll()
+    public function getAll():array
     {
-        $agent=[];
-        $req= $this->db->prepare("SELECT * FROM `Agent` ORDER BY nom_identification");
-        $req->execute();
-        $datas= $req->fetchAll();
+        $agents= [];
+        $req= $this->db->query("SELECT * FROM `Agent` ORDER BY nom_identification");
+        $datas=$req->fetchAll();
         foreach($datas as $data){
-            $agent= new Agent($data);
-           // $agent[]= $agent;
+        $agent= new Agent($data);
+        $agents[]= $agent;
         }
-        $req->closeCursor();
-        return $agent;
+
+        return $agents;
+
+        
+        
     }
 
-   
+    
 
     public function update(Agent $agent)
     {
-        $req= $this->db->prepare("UPDATE `Agent` SET Nom=:Nom, Prenom=:Prenom,Date_de_naissance=:Date_de_naissance,nom_identification=:nom_dentification,Nationalite=:Nationalite,Specialite=:Specialite WHERE id=$_GET[id]");
+        $req= $this->db->prepare("UPDATE `Agent` SET nom=:nom, prenom=:prenom,date_de_naissance=:date_de_naissance,nom_identification=:nom_identification,nationalite=:nationalite,specialite=:specialite WHERE id=$_GET[id]");
 
         $req->bindValue(":nom",$agent->getNom(), PDO::PARAM_STR);
         $req->bindValue(":prenom",$agent->getPrenom(), PDO::PARAM_STR);
-        $req->bindValue(":Date_de_naissance",$agent->getDate_de_naissance(), PDO::PARAM_STR);
-        $req->bindValue(":nom_Identification",$agent->getNom_identification(), PDO::PARAM_STR);
-        $req->bindValue(":Nationalite",$agent->getNationalite(), PDO::PARAM_STR);
-        $req->bindValue(":Specialite",$agent->getSpecialite(), PDO::PARAM_STR);
+        $req->bindValue(":date_de_naissance",$agent->getDate_de_naissance(), PDO::PARAM_STR);
+        $req->bindValue(":nom_identification",$agent->getNom_identification(), PDO::PARAM_STR);
+        $req->bindValue(":nationalite",$agent->getNationalite(), PDO::PARAM_STR);
+        $req->bindValue(":specialite",$agent->getSpecialite(), PDO::PARAM_STR);
         $req->execute();
     }
 

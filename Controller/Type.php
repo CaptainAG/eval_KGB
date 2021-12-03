@@ -1,22 +1,24 @@
 <?php 
 
-class Country
+class Type
 {
     private $id;
-    private $nationalite;
-
-    public function __construct(array $data) {
+    private $type;
+    
+    public function __construct (array $data)
+    {
         $this->hydrate($data);
     }
 
     public function hydrate(array $data){
-        foreach($data as $key=>$value){
-            $method = "set" .ucfirst($key);
-            if(method_exists($this, $method )){
-                $this -> $method($value);
+        foreach($data as $key =>$value){
+            $method = "set".ucfirst($key);
+            if(method_exists($this, $method)){
+                $this-> $method($value);
             }
         }
     }
+    
 
     /**
      * Get the value of id
@@ -39,21 +41,21 @@ class Country
     }
 
     /**
-     * Get the value of nationalite
+     * Get the value of type
      */ 
-    public function getNationalite()
+    public function getType()
     {
-        return $this->nationalite;
+        return $this->type;
     }
 
     /**
-     * Set the value of nationalite
+     * Set the value of type
      *
      * @return  self
      */ 
-    public function setNationalite($nationalite)
+    public function setType($type)
     {
-        $this->nationalite = $nationalite;
+        $this->type = $type;
 
         return $this;
     }

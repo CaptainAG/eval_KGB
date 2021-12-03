@@ -5,8 +5,9 @@ require("../asset/navbar.php");
 require("../Controller/AgentController.php");
 
 $controller= new AgentController();
-$agent= $controller->getAll();
+$agents= $controller->getAll();
 $error= null;
+
 
 ?>
 
@@ -30,16 +31,16 @@ $error= null;
                         </tr>
                     </thead>
 		            <tbody>
-                        <?php foreach($agent as $agent): ?>
+                        <?php foreach($agents as $agent): ?>
                             <tr>
                                 <td scope="row"> <?= $agent->getNom() ?> </td>
-                                <td> <?= $agent->getNom() ?> </td>
-                                <td> <?= $agent->getNom() ?> </td>
-                                <td> <?= $agent->getNom() ?> </td>
-                                <td> <?= $agent->getNom() ?> </td>
-                                <td> <?= $agent->getNom() ?> </td>
-                                <td> <a href="./update.php?id=<?= $pokemon->getId() ?>" class="btn btn-warning">Modifier</a> </td>
-                                <td> <a href="./delete.php?id=<?= $pokemon->getId() ?>" class="btn btn-danger">Supprimer</a> </td>
+                                <td> <?= $agent->getPrenom() ?> </td>
+                                <td> <?= $agent->getDate_de_naissance() ?> </td>
+                                <td> <?= $agent->getNom_identification() ?> </td>
+                                <td> <?= $agent->getNationalite() ?> </td>
+                                <td> <?= $agent->getSpecialite()?> </td>
+                                <td> <a href="update_agent.php?id=<?= $agent->getId()?>" class="btn btn-warning">Modifier</a> </td>
+                                <td> <a href="delete_agent.php?id=<?= $agent->getId()?>" class="btn btn-danger">Supprimer</a> </td>
                             </tr>
                         <?php endforeach ?>
                     </tbody>

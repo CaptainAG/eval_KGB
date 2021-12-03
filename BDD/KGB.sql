@@ -6,7 +6,7 @@ USE eval_KGB;
 CREATE TABLE Pays 
 (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
-    Nationalite VARCHAR(50) NOT NULL
+    nationalite VARCHAR(50) NOT NULL
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE INDEX Nationalite ON Pays(Nationalite);
@@ -14,7 +14,7 @@ CREATE INDEX Nationalite ON Pays(Nationalite);
 CREATE TABLE Statut
 (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
-    Statut VARCHAR(50) NOT NULL
+    statut VARCHAR(50) NOT NULL
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE INDEX Statut ON Statut(Statut);
@@ -22,7 +22,7 @@ CREATE INDEX Statut ON Statut(Statut);
 CREATE TABLE Type_Mission 
 (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
-    Types VARCHAR(50) NOT NULL
+    type VARCHAR(50) NOT NULL
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE INDEX Types ON Type_Mission(Types);
@@ -30,7 +30,7 @@ CREATE INDEX Types ON Type_Mission(Types);
 CREATE TABLE Specialite
 (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
-    Specialite VARCHAR(50) NOT NULL
+    specialite VARCHAR(50) NOT NULL
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE INDEX Specialite ON Specialite(Specialite);
@@ -38,52 +38,52 @@ CREATE INDEX Specialite ON Specialite(Specialite);
 CREATE TABLE Planque  
 (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
-    Code  VARCHAR(50) NOT NULL, 
-    Adresse VARCHAR(50) NOT NULL, 
-    Types VARCHAR(50) NOT NULL,
-    Pays VARCHAR(50) NOT NULL,
-    FOREIGN KEY (Pays) REFERENCES Pays(Nationalite)
+    code  VARCHAR(50) NOT NULL, 
+    adresse VARCHAR(50) NOT NULL, 
+    type VARCHAR(50) NOT NULL,
+    pays VARCHAR(50) NOT NULL,
+    FOREIGN KEY (pays) REFERENCES Pays(nationalite)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE INDEX  Code  ON Planque (Code);
+CREATE INDEX  code  ON Planque (code);
 
 CREATE TABLE Cible
 (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
-    Nom VARCHAR(50) NOT NULL,
-    Prenom VARCHAR(50) NOT NULL,
-    Date_de_naissance VARCHAR(50) NOT NULL , 
-    Nom_de_code VARCHAR(50) NOT NULL ,
-    Nationalite VARCHAR(50) NOT NULL,
-    FOREIGN KEY (Nationalite) REFERENCES Pays(Nationalite)
+    nom VARCHAR(50) NOT NULL,
+    prenom VARCHAR(50) NOT NULL,
+    date_de_naissance VARCHAR(50) NOT NULL , 
+    nom_de_code VARCHAR(50) NOT NULL ,
+    ationalite VARCHAR(50) NOT NULL,
+    FOREIGN KEY (nationalite) REFERENCES Pays(nationalite)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE INDEX  Nom_de_code ON Cible(Nom_de_code);
+CREATE INDEX  nom_de_code ON Cible(nom_de_code);
 
 CREATE TABLE Contact
 (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
-    Nom VARCHAR(50) NOT NULL,
-    Prenom VARCHAR(50) NOT NULL,
-    Date_de_naissance VARCHAR(50) NOT NULL , 
-    Nom_de_code VARCHAR(50) NOT NULL ,
-    Nationalite VARCHAR(50) NOT NULL,
+    nom VARCHAR(50) NOT NULL,
+    prenom VARCHAR(50) NOT NULL,
+    date_de_naissance VARCHAR(50) NOT NULL , 
+    nom_de_code VARCHAR(50) NOT NULL ,
+    nationalite VARCHAR(50) NOT NULL,
     FOREIGN KEY (Nationalite) REFERENCES Pays(Nationalite)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE INDEX  Nom_de_code ON Contact(Nom_de_code);
+CREATE INDEX  nom_de_code ON Contact(nom_de_code);
 
 CREATE TABLE Agent
 (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
-    Nom VARCHAR(50) NOT NULL, 
-    Prenom VARCHAR(50) NOT NULL, 
-    Date_de_naissance VARCHAR(50) NOT NULL , 
+    nom VARCHAR(50) NOT NULL, 
+    prenom VARCHAR(50) NOT NULL, 
+    date_de_naissance VARCHAR(50) NOT NULL , 
     nom_identification VARCHAR(50) NOT NULL ,
-    Nationalite VARCHAR(50) NOT NULL,
-    FOREIGN KEY (Nationalite) REFERENCES Pays(Nationalite),
-    Specialite VARCHAR(50) NOT NULL,
-    FOREIGN KEY (Specialite) REFERENCES Specialite(Specialite)
+    nationalite VARCHAR(50) NOT NULL,
+    FOREIGN KEY (nationalite) REFERENCES Pays(nationalite),
+    specialite VARCHAR(50) NOT NULL,
+    FOREIGN KEY (specialite) REFERENCES Specialite(dpecialite)
 
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -92,56 +92,56 @@ CREATE INDEX  nom_identification ON Agent( nom_identification);
 CREATE TABLE Mission
 (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    Titre VARCHAR(50) NOT NULL,
-    Description VARCHAR(500) NOT NULL,
-    Nom_de_code VARCHAR(50) NOT NULL,
-    Pays VARCHAR(50) NOT NULL,
+    titre VARCHAR(50) NOT NULL,
+    description VARCHAR(500) NOT NULL,
+    nom_de_code VARCHAR(50) NOT NULL,
+    pays VARCHAR(50) NOT NULL,
     FOREIGN KEY (Pays) REFERENCES Pays(Nationalite),
-    Agent VARCHAR(50) NOT NULL,
+    agent VARCHAR(50) NOT NULL,
     FOREIGN KEY (Agent) REFERENCES Agent(nom_identification),
-    Contact VARCHAR(50) NOT NULL,
+    contact VARCHAR(50) NOT NULL,
     FOREIGN KEY (Contact) REFERENCES Contact(Nom_de_code),
-    Cible VARCHAR(50) NOT NULL,
+    cible VARCHAR(50) NOT NULL,
     FOREIGN KEY (Cible) REFERENCES Cible(Nom_de_code),
-    Type_Mission VARCHAR(50) NOT NULL,
-    FOREIGN KEY (Type_Mission) REFERENCES Type_Mission(Types),
-    Statut VARCHAR(50) NOT NULL,
+    type_mission VARCHAR(50) NOT NULL,
+    FOREIGN KEY (Type_mission) REFERENCES Type_Mission(types),
+    statut VARCHAR(50) NOT NULL,
     FOREIGN KEY (Statut) REFERENCES Statut(Statut),
-    Planque VARCHAR(50) NOT NULL,
+    planque VARCHAR(50) NOT NULL,
     FOREIGN KEY (Planque) REFERENCES Planque(Code),
-    Specialite VARCHAR(50) NOT NULL,
+    specialite VARCHAR(50) NOT NULL,
     FOREIGN KEY (Specialite) REFERENCES Specialite(Specialite),
-    Date_debut VARCHAR(50) NOT NULL,
-    Date_fin VARCHAR(50) NOT NULL
+    date_debut VARCHAR(50) NOT NULL,
+    date_fin VARCHAR(50) NOT NULL
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 CREATE TABLE Admin
 (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    Nom VARCHAR(50) NOT NULL, 
-    Prenom VARCHAR(50) NOT NULL,
-    Email VARCHAR(254) NOT NULL UNIQUE,
-    Password CHAR(60) NOT NULL,
-    Date_creation VARCHAR(50) NOT NULL
+    nom VARCHAR(50) NOT NULL, 
+    prenom VARCHAR(50) NOT NULL,
+    email VARCHAR(254) NOT NULL UNIQUE,
+    password CHAR(60) NOT NULL,
+    date_creation VARCHAR(50) NOT NULL
 
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 
-insert into  Admin (Nom, Prenom, Email, Password, Date_creation)
+insert into  Admin (nom, prenom, email, password, date_creation)
 values
 ('John','Doe', 'JohnDoe@gmail.com','$2y$10$qW5O02qav3PkTkErlWUFtuJvBygOyMdtViIRPIcs0wCqFDlzrb6yi','23/10/2021');
 
 
-insert into Statut (Statut)
+insert into Statut (statut)
 values
 ('En préparation'),
 ('En cours'),
 ('Terminé'),
 ('Échec');
 
-insert into Pays(Nationalite)
+insert into Pays(nationalite)
 values
 ('Afghanistan'),
 ('Albanie'),

@@ -15,12 +15,9 @@ require("../asset/navbar.php")
             <div class="row justify-content-center text-center">
                 <h1>Missions</h1>
                 <div class="boutton d-flex justify-content-between">
-                <a href='#' class="btn btn-primary">Ajouter un Admin</a> 
-                
-                <a href='#' class="btn btn-warning">Ajouter une Cible</a>
-                <a href='#' class="btn btn-info">Ajouter un Contact</a> 
-                <a href='#' class="btn btn-secondary">Ajouter une Planque</a> 
-                <a href='#' class="btn btn-dark">Ajouter une Mission</a>
+                <a href="./create_admin.php" class="btn btn-primary">Ajouter un admin</a>  
+                <a href="./create_type.php" class="btn btn-primary">Ajouter un type de mission</a>  
+                <a href="./create_mission.php" class="btn btn-dark">Ajouter une Mission</a>
                 </div>
                 <table class="table table-striped table-hover table-responsive text-center">
                     <thead>
@@ -44,6 +41,8 @@ require("../asset/navbar.php")
                                 <td> <?= $mission->getDate_debut() ?> </td>
                                 <td> <?= $mission->getDate_fin() ?> </td>
                                 <td> <a href="#">show</a> </td>
+                                <td> <a href="./update_mission.php?id=<?= $mission->getId() ?>" class="btn btn-warning">Modifier</a> </td>
+                                <td> <a href="./delete_mission.php?id=<?= $mission->getId() ?>" class="btn btn-danger">Supprimer</a> </td>
                             </tr>
                         <?php endforeach ?>
                     </tbody>

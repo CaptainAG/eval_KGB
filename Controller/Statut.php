@@ -1,9 +1,9 @@
 <?php 
 
-class Country
+class Statut
 {
     private $id;
-    private $nationalite;
+    private $statut; 
 
     public function __construct(array $data) {
         $this->hydrate($data);
@@ -17,6 +17,8 @@ class Country
             }
         }
     }
+
+    
 
     /**
      * Get the value of id
@@ -39,21 +41,21 @@ class Country
     }
 
     /**
-     * Get the value of nationalite
+     * Get the value of statut
      */ 
-    public function getNationalite()
+    public function getStatut()
     {
-        return $this->nationalite;
+        return $this->statut;
     }
 
     /**
-     * Set the value of nationalite
+     * Set the value of statut
      *
      * @return  self
      */ 
-    public function setNationalite($nationalite)
+    public function setStatut($statut)
     {
-        $this->nationalite = $nationalite;
+        $this->statut = $statut;
 
         return $this;
     }

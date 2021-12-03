@@ -23,32 +23,48 @@ class PlanqueController{
 
     public function create(Planque $planque)
     {
-        $req= $this->db->prepare("INSERT INTO `Planque`(Code,Adresse,Types,Pays) VALUE (:Code,:Adresse,:Types,:Pays) ");
+        $req= $this->db->prepare("INSERT INTO `Planque`(code,adresse,type,pays) VALUE (:code,:adresse,:type,:pays) ");
 
-        $req->bindValue(":Code",$planque->getCode(), PDO::PARAM_STR);
-        $req->bindValue(":Adresse",$planque->getAdresse(), PDO::PARAM_STR);
-        $req->bindValue(":Types",$planque->getTypes(), PDO::PARAM_STR);
-        $req->bindValue(":Pays",$planque->getPays(), PDO::PARAM_STR);
+        $req->bindValue(":code",$planque->getCode(), PDO::PARAM_STR);
+        $req->bindValue(":adresse",$planque->getAdresse(), PDO::PARAM_STR);
+        $req->bindValue(":type",$planque->getType(), PDO::PARAM_STR);
+        $req->bindValue(":pays",$planque->getPays(), PDO::PARAM_STR);
         $req->execute();
     }
 
-    public function get(string $code)
+    public function get(int $id)
     {
-        $req= $this->db->prepare("SELECT * FROM `Planque` WHERE Code=:Code");
-        $req->execute([":Code" => $code]);
+        $req= $this->db->prepare("SELECT * FROM `Planque` WHERE id= :id");
+        $req->execute([":id" => $id]);
         $data= $req->fetch();
         $planque = new Planque($data);
         return $planque;
     }
 
+    public function getAll():array
+    {
+        $planques= [];
+        $req= $this->db->query("SELECT * FROM `Planque` ORDER BY Code");
+        $datas=$req->fetchAll();
+        foreach($datas as $data){
+        $planque= new Planque($data);
+        $planques[]= $planque;
+        }
+
+        return $planques;
+
+        
+        
+    }
+
     public function update(Planque $planque)
     {
-        $req=$this->db->prepare("UPDATE `Planque` SET Code=:Code,Adresse=:Adresse,Types=:Types,Pays=:Pays WHERE id=$_GET[id]");
+        $req=$this->db->prepare("UPDATE `Planque` SET Code=:code,adresse=:adresse,type=:type,pays=:pays WHERE id=$_GET[id]");
         
-        $req->bindValue(":Code",$planque->getCode(), PDO::PARAM_STR);
-        $req->bindValue(":Adresse",$planque->getAdresse(), PDO::PARAM_STR);
-        $req->bindValue(":Types",$planque->getTypes(), PDO::PARAM_STR);
-        $req->bindValue(":Pays",$planque->getPays(), PDO::PARAM_STR);
+        $req->bindValue(":code",$planque->getCode(), PDO::PARAM_STR);
+        $req->bindValue(":adresse",$planque->getAdresse(), PDO::PARAM_STR);
+        $req->bindValue(":type",$planque->getType(), PDO::PARAM_STR);
+        $req->bindValue(":pays",$planque->getPays(), PDO::PARAM_STR);
         $req->execute();
     }
 

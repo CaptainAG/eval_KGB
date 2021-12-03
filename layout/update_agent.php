@@ -9,7 +9,8 @@ require("../Controller/SpecialiteController.php");
 $agentController= new AgentController();
 $countryController= new CountryController();
 $specialiteController= new SpecialiteController();
-  
+
+$agent= $agentController->get($_GET["id"]);
 $countrys= $countryController-> getAll();
 $specialites= $specialiteController->getAll();
 $error= null;
@@ -30,7 +31,7 @@ if($_POST){
         "nationalite"=>$nationalite,
         "specialite"=>$specialite,
     ]);
-    $agentController->create($newAgent);
+    $agentController->update($newAgent);
     header("Location: ./page_agent.php");
 
 }
@@ -45,19 +46,19 @@ if($_POST){
 <div class="container-xxl">
 <form method="post" enctype="multipart/form-data" >
         <label for="nom" class="form-lable"> Nom</label>
-        <input type="text" name="nom" placeholder="Le Nom de l'agent" id="nom" class="form-control" minlength="3" maxlength="40">
+        <input type="text" name="nom" value="<?= $agent->getNom() ?>" id="nom" class="form-control" placeholder="Le nom de l'agent" minlength="3" maxlength="40">
         <label for="prenom" class="form-lable"> Prénom</label>
-        <input type="text" name="prenom" placeholder="Le Prénom de l'agent" id="prenom" class="form-control" minlength="3" maxlength="40">
+        <input type="text" name="prenom" value="<?= $agent->getPrenom() ?>" id="prenom" class="form-control" minlength="3" maxlength="40">
         <label for="date_de_naissance" class="form-lable"> Date de naissance </label>
-        <input type="date" name="date_de_naissance" placeholder="La Date de naissance" id="date_de_naissance" class="form-control" minlength="3" maxlength="40">
+        <input type="text" name="date_de_naissance" value="<?= $agent->getDate_de_naissance() ?>" id="date_de_naissance" class="form-control" minlength="3" maxlength="40">
         <label for="nom_identification" class="form-lable"> Nom d'identification</label>
-        <input type="text" name="nom_identification" placeholder="Le nom d'identification de l'agent" id="nom_identification" class="form-control" minlength="3" maxlength="40">
+        <input type="text" name="nom_identification" value="<?= $agent->getNom_identification() ?>" id="nom_identification" class="form-control" minlength="3" maxlength="40">
 
         <label for="nationalite" class="form-lable"> Nationnalité</label>
        <select name="nationalite" id="nationalite" class="form-select">
        <option value=""> --</option>
           <?php foreach($countrys as $country): ?>
-            <option value="<?= $country->getNationalite()?>"> <?= $country->getNationalite()?> </option>
+            <option <?=$country->getNationalite() === $agent->getNationalite()?"selected": "" ?> value="<?= $country->getNationalite()?>"> <?= $country->getNationalite()?> </option>
           <?php endforeach ?>
         </select>
         
@@ -65,12 +66,12 @@ if($_POST){
        <select name="specialite" id="specialite" class="form-select">
         <option value=""> --</option>
           <?php foreach($specialites as $specialite): ?>
-            <option value="<?= $specialite->getSpecialite()?>"> <?= $specialite->getSpecialite()?> </option>
+            <option <?=$specialite->getSpecialite() === $agent->getSpecialite()?"selected": "" ?> value="<?= $specialite->getSpecialite()?>"> <?= $specialite->getSpecialite()?> </option>
           <?php endforeach ?>
         </select>
 
         <input type="submit" class="btn btn-success mt-3" value="Créer"> 
-        
+        </form>
 
 
 </form>

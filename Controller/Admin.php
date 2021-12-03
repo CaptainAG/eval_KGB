@@ -1,13 +1,12 @@
 <?php 
 
-class Cible 
-{
+class Admin{
     private $id;
-    private $Nom;
-    private $Prenom;
-    private $Date_de_naissance;
-    private $Nom_de_code;
-    private $Nationalite;
+    private $nom;
+    private $prenom;
+    private $email;
+    private $password;
+    private $date_creation;
 
     public function __construct (array $data)
     {
@@ -22,6 +21,8 @@ class Cible
             }
         }
     }
+
+    
 
     /**
      * Get the value of id
@@ -43,106 +44,103 @@ class Cible
         return $this;
     }
 
-
     /**
-     * Get the value of Nom
+     * Get the value of nom
      */ 
     public function getNom()
     {
-        return $this->Nom;
+        return $this->nom;
     }
 
     /**
-     * Set the value of Nom
+     * Set the value of nom
      *
      * @return  self
      */ 
-    public function setNom($Nom)
+    public function setNom($nom)
     {
-        $this->Nom = $Nom;
+        $this->nom = $nom;
 
         return $this;
     }
 
     /**
-     * Get the value of Prenom
+     * Get the value of prenom
      */ 
     public function getPrenom()
     {
-        return $this->Prenom;
+        return $this->prenom;
     }
 
     /**
-     * Set the value of Prenom
+     * Set the value of prenom
      *
      * @return  self
      */ 
-    public function setPrenom($Prenom)
+    public function setPrenom($prenom)
     {
-        $this->Prenom = $Prenom;
+        $this->prenom = $prenom;
 
         return $this;
     }
 
     /**
-     * Get the value of Date_de_naissance
+     * Get the value of email
      */ 
-    public function getDate_de_naissance()
+    public function getEmail()
     {
-        return $this->Date_de_naissance;
+        return $this->email;
     }
 
     /**
-     * Set the value of Date_de_naissance
+     * Set the value of email
      *
      * @return  self
      */ 
-    public function setDate_de_naissance($Date_de_naissance)
+    public function setEmail($email)
     {
-        $this->Date_de_naissance = $Date_de_naissance;
+        $this->email = $email;
 
         return $this;
     }
 
     /**
-     * Get the value of Nom_de_code
+     * Get the value of password
      */ 
-    public function getNom_de_code()
+    public function getPassword()
     {
-        return $this->Nom_de_code;
+        return $this->password;
     }
 
     /**
-     * Set the value of Nom_de_code
+     * Set the value of password
      *
      * @return  self
      */ 
-    public function setNom_de_code($Nom_de_code)
+    public function setPassword($password)
     {
-        $this->Nom_de_code = $Nom_de_code;
+        $this->password = $password;
 
         return $this;
     }
 
     /**
-     * Get the value of Nationalite
+     * Get the value of date_creation
      */ 
-    public function getNationalite()
+    public function getDate_creation()
     {
-        return $this->Nationalite;
+        return $this->date_creation;
     }
 
     /**
-     * Set the value of Nationalite
+     * Set the value of date_creation
      *
      * @return  self
      */ 
-    public function setNationalite($Nationalite)
+    public function setDate_creation($date_creation)
     {
-        $this->Nationalite = $Nationalite;
+        $this->date_creation = $date_creation;
 
         return $this;
     }
-
-    
 }

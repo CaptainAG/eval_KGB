@@ -1,8 +1,8 @@
 <?php 
 
-require("Pays.php"); 
+require("Statut.php"); 
 
-class CountryController{
+class StatutController{
     private $db;
 
     public function __construct()
@@ -25,15 +25,15 @@ class CountryController{
 
     public function getAll():array
     {
-        $countrys= [];
-        $req= $this->db->query("SELECT * FROM `Pays` ORDER BY Nationalite");
+        $statuts= [];
+        $req= $this->db->query("SELECT * FROM `Statut` ORDER BY statut");
         $datas=$req->fetchAll();
         foreach($datas as $data){
-        $country= new Country($data);
-        $countrys[]= $country;
+        $statut= new Statut($data);
+        $statuts[]= $statut;
         }
 
-        return $countrys;
+        return $statuts;
 
         
         
