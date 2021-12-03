@@ -1,7 +1,7 @@
 <?php
-require("../asset/header.php");
+require("./asset/header.php");
 
-require("../Controller/MissionController.php");
+require("./Controller/MissionController.php");
 $missionController= new MissionController();
 $mission=$missionController->get($_GET["id"]);
 
@@ -42,12 +42,12 @@ if($error){
         </table>
       </div>
       <div>
-          <a href="./Admin_page.php" class="btn btn-secondary">Retour</a>
+          <a href="./index.php" class="btn btn-secondary">Retour</a>
       </div>
     </div>
   </div>
 </div>
 
 <?php 
-require("../asset/footer.php");
+require("./asset/footer.php");
 ?>

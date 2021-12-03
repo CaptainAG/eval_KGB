@@ -48,8 +48,8 @@ class MissionController{
         $req= $this->db->prepare("SELECT * FROM `Mission` WHERE id= :id");
         $req->execute([":id" => $id]);
         $data= $req->fetch();
-        $planque = new Mission($data);
-        return $planque;
+        $mission = new Mission($data);
+        return $mission;
     }
 
     public function getAll():array

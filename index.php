@@ -1,7 +1,7 @@
 <?php 
 
 require("asset/header.php");
-require("./Controller/MissionController.php");
+require("Controller/MissionController.php");
 $controller= new MissionController();
 $missions= $controller->getAll();
 $error= null;
@@ -31,9 +31,7 @@ $error= null;
                                 <td> <?= $mission->getPays() ?> </td>
                                 <td> <?= $mission->getDate_debut() ?> </td>
                                 <td> <?= $mission->getDate_fin() ?> </td>
-                                <td> 
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Show</button> 
-                                    <?php require("./layout/show_mission.php")?>
+                                <td> <a href="./show_mission_index.php?id=<?= $mission->getId() ?>" class="btn btn-success">show</a>
                                 </td>
                             </tr>
                         <?php endforeach ?>
