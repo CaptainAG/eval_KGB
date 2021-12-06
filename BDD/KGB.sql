@@ -9,7 +9,7 @@ CREATE TABLE Pays
     nationalite VARCHAR(50) NOT NULL
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE INDEX Nationalite ON Pays(Nationalite);
+CREATE INDEX nationalite ON Pays(nationalite);
 
 CREATE TABLE Statut
 (
@@ -17,7 +17,7 @@ CREATE TABLE Statut
     statut VARCHAR(50) NOT NULL
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE INDEX Statut ON Statut(Statut);
+CREATE INDEX Statut ON Statut(statut);
 
 CREATE TABLE Type_Mission 
 (
@@ -25,7 +25,7 @@ CREATE TABLE Type_Mission
     type VARCHAR(50) NOT NULL
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE INDEX Types ON Type_Mission(Types);
+CREATE INDEX type ON Type_Mission(type);
 
 CREATE TABLE Specialite
 (
@@ -33,7 +33,7 @@ CREATE TABLE Specialite
     specialite VARCHAR(50) NOT NULL
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE INDEX Specialite ON Specialite(Specialite);
+CREATE INDEX Specialite ON Specialite(specialite);
 
 CREATE TABLE Planque  
 (
@@ -54,7 +54,7 @@ CREATE TABLE Cible
     prenom VARCHAR(50) NOT NULL,
     date_de_naissance VARCHAR(50) NOT NULL , 
     nom_de_code VARCHAR(50) NOT NULL ,
-    ationalite VARCHAR(50) NOT NULL,
+    nationalite VARCHAR(50) NOT NULL,
     FOREIGN KEY (nationalite) REFERENCES Pays(nationalite)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -68,7 +68,7 @@ CREATE TABLE Contact
     date_de_naissance VARCHAR(50) NOT NULL , 
     nom_de_code VARCHAR(50) NOT NULL ,
     nationalite VARCHAR(50) NOT NULL,
-    FOREIGN KEY (Nationalite) REFERENCES Pays(Nationalite)
+    FOREIGN KEY (nationalite) REFERENCES Pays(nationalite)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE INDEX  nom_de_code ON Contact(nom_de_code);
@@ -82,8 +82,7 @@ CREATE TABLE Agent
     nom_identification VARCHAR(50) NOT NULL ,
     nationalite VARCHAR(50) NOT NULL,
     FOREIGN KEY (nationalite) REFERENCES Pays(nationalite),
-    specialite VARCHAR(50) NOT NULL,
-    
+    specialite VARCHAR(50) NOT NULL
 
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -96,19 +95,15 @@ CREATE TABLE Mission
     description VARCHAR(500) NOT NULL,
     nom_de_code VARCHAR(50) NOT NULL,
     pays VARCHAR(50) NOT NULL,
-    FOREIGN KEY (Pays) REFERENCES Pays(Nationalite),
+    FOREIGN KEY (Pays) REFERENCES Pays(nationalite),
     agent VARCHAR(50) NOT NULL,
-    
     contact VARCHAR(50) NOT NULL,
-    
     cible VARCHAR(50) NOT NULL,
-   
     type_mission VARCHAR(50) NOT NULL,
-    FOREIGN KEY (Type_mission) REFERENCES Type_Mission(types),
+    FOREIGN KEY (Type_mission) REFERENCES Type_Mission(type),
     statut VARCHAR(50) NOT NULL,
     FOREIGN KEY (Statut) REFERENCES Statut(Statut),
     planque VARCHAR(50),
-    
     specialite VARCHAR(50) NOT NULL,
     FOREIGN KEY (Specialite) REFERENCES Specialite(Specialite),
     date_debut VARCHAR(50) NOT NULL,
