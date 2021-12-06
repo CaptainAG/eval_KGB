@@ -36,17 +36,24 @@ $error= null;
 
 
 
+
+
+
 if($_POST){
     $titre= $_POST["titre"];
     $description= $_POST["description"];
     $nom_de_code=$_POST["nom_de_code"];
     $pays=$_POST["pays"];
     $agent=$_POST["agent"];
+    $toutAgent=implode("--",$agent);
     $contact=$_POST["contact"];
+    $toutContact=implode("--",$contact);
     $cible=$_POST["cible"];
+    $toutCible=implode("--",$cible);
     $type_mission=$_POST["type_mission"];
     $statut=$_POST["statut"];
     $planque=$_POST["planque"];
+    $toutPlanque=implode("--",$planque);
     $specialite=$_POST["specialite"];
     $date_debut=$_POST["date_debut"];
     $date_fin=$_POST["date_fin"];
@@ -56,12 +63,12 @@ if($_POST){
         "description"=>$description,
         "nom_de_code"=> $nom_de_code,
         "pays"=>$pays,
-        "agent"=>$agent,
-        "contact"=>$contact,
-        "cible"=>$cible ,
+        "agent"=>$toutAgent,
+        "contact"=>$toutContact,
+        "cible"=>$toutCible,
         "type_mission"=>$type_mission ,
         "statut"=> $statut ,
-        "planque"=>$planque ,
+        "planque"=>$toutPlanque,
         "specialite"=> $specialite,
         "date_debut"=> $date_debut,
         "date_fin"=>$date_fin,
@@ -70,6 +77,10 @@ if($_POST){
     header("Location: ./Admin_page.php");
 
 }
+
+
+
+
 
 ?>
 
@@ -97,29 +108,24 @@ if($_POST){
           <?php endforeach ?>
         </select>
 
-        <label for="agent" class="form-lable"> Agent</label>
-       <select name="agent" id="agent" class="form-select">
-       <option value=""> --</option>
+        <label for="agent" class="form-lable"> Agent</label> <br>
           <?php foreach($agents as $agent): ?>
-            <option value="<?= $agent->getNom_identification()?>"> <?= $agent->getNom_identification()?> </option>
+              <input type="checkbox" name="agent[]" value="<?= $agent->getNom_identification()?>"> <?= $agent->getNom_identification().' -- ('. ($agent->getNationalite()).') --'.($agent->getSpecialite())?> </input> <br>
           <?php endforeach ?>
-        </select>
+          <br>
+        
 
-        <label for="contact" class="form-lable"> Contact</label>
-       <select name="contact" id="contact" class="form-select">
-       <option value=""> --</option>
+        <label for="contact" class="form-lable"> Contact</label> <br>
           <?php foreach($contacts as $contact): ?>
-            <option value="<?= $contact->getNom_de_code()?>"> <?= $contact->getNom_de_code()?> </option>
+            <input type="checkbox" name="contact[]" value="<?= $contact->getNom_de_code()?>"> <?= $contact->getNom_de_code() .' -- ('. ($contact->getNationalite()).')'?> </input> <br>
           <?php endforeach ?>
-        </select>
+          <br>
 
-        <label for="cible" class="form-lable"> Cible</label>
-       <select name="cible" id="cible" class="form-select">
-       <option value=""> --</option>
+        <label for="cible" class="form-lable"> Cible</label> <br>
           <?php foreach($cibles as $cible): ?>
-            <option value="<?= $cible->getNom_de_code()?>"> <?= $cible->getNom_de_code()?> </option>
+            <input type="checkbox" name="cible[]"  value="<?= $cible->getNom_de_code()?>"> <?= $cible->getNom_de_code().' -- ('. ($cible->getNationalite()).')'?> </input><br>
           <?php endforeach ?>
-        </select>
+          <br>
 
 
         <label for="type_mission" class="form-lable"> Type de mission </label>
@@ -139,13 +145,11 @@ if($_POST){
         </select>
         
         
-        <label for="planque" class="form-lable"> Planque</label>
-       <select name="planque" id="planque" class="form-select">
-       <option value=""> --</option>
+        <label for="planque" class="form-lable"> Planque</label> <br>
           <?php foreach($planques as $planque): ?>
-            <option value="<?= $planque->getCode()?>"> <?= $planque->getCode()?> </option>
+            <input type="checkbox" name="planque[]" value="<?= $planque->getCode()?>"> <?= $planque->getCode() .' -- ('. ($planque->getPays()).')'?> </input><br>
           <?php endforeach ?>
-        </select>
+        <br>
         
         <label for="specialite" class="form-lable"> Spécialité </label>
        <select name="specialite" id="specialite" class="form-select">

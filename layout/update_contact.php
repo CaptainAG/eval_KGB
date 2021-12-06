@@ -21,7 +21,7 @@ if($_POST){
     $nationalite=$_POST["nationalite"];
    
 
-    $newCible= new Contact([
+    $newContact= new Contact([
         "nom"=>$nom,
         "prenom"=>$prenom,
         "date_de_naissance"=>$date_de_naissance,
@@ -48,7 +48,7 @@ if($_POST){
         <label for="prenom" class="form-lable"> Prénom</label>
         <input type="text" name="prenom" value="<?= $contact->getPrenom() ?>" placeholder="Le Prénom de l'agent" id="prenom" class="form-control" minlength="3" maxlength="40">
         <label for="date_de_naissance" class="form-lable"> Date de naissance </label>
-        <input type="text" name="date_de_naissance" value="<?= $contact->getDate_de_naissance() ?>" placeholder="La Date de naissance" id="date_de_naissance" class="form-control" minlength="3" maxlength="40">
+        <input type="date" name="date_de_naissance" value="<?= $contact->getDate_de_naissance() ?>" placeholder="La Date de naissance" id="date_de_naissance" class="form-control" minlength="3" maxlength="40">
         <label for="nom_de_code" class="form-lable"> Nom de code</label>
         <input type="text" name="nom_de_code" value="<?= $contact->getNom_de_code() ?>" placeholder="Le nom d'identification de l'agent" id="nom_de_code" class="form-control" minlength="3" maxlength="40">
 
@@ -59,7 +59,7 @@ if($_POST){
             <option <?=$country->getNationalite() === $contact->getNationalite()?"selected": "" ?> value="<?= $country->getNationalite()?>"> <?= $country->getNationalite()?> </option>
           <?php endforeach ?>
         </select>
-        <input type="submit" class="btn btn-success mt-3" value="Créer"> 
+        <input type="submit" class="btn btn-warning mt-3" value="Modifier"> 
         </form>
 
 

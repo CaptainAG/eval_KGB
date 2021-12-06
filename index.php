@@ -31,7 +31,7 @@ $error= null;
                                 <td> <?= $mission->getPays() ?> </td>
                                 <td> <?= $mission->getDate_debut() ?> </td>
                                 <td> <?= $mission->getDate_fin() ?> </td>
-                                <td> <a href="./show_mission_index.php?id=<?= $mission->getId() ?>" class="btn btn-success">show</a>
+                                <td> <a href="./show_mission_index.php?id=<?= $mission->getId() ?>" class="btn btn-success">Voir</a>
                                 </td>
                             </tr>
                         <?php endforeach ?>

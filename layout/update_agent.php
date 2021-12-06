@@ -22,6 +22,7 @@ if($_POST){
     $nom_identification=$_POST["nom_identification"];
     $nationalite=$_POST["nationalite"];
     $specialite=$_POST["specialite"];
+    $toutSpecialite= implode("-",$specialite);
 
     $newAgent= new Agent([
         "nom"=>$nom,
@@ -29,7 +30,7 @@ if($_POST){
         "date_de_naissance"=>$date_de_naissance,
         "nom_identification"=>$nom_identification,
         "nationalite"=>$nationalite,
-        "specialite"=>$specialite,
+        "specialite"=>$toutSpecialite,
     ]);
     $agentController->update($newAgent);
     header("Location: ./page_agent.php");
@@ -50,7 +51,7 @@ if($_POST){
         <label for="prenom" class="form-lable"> Prénom</label>
         <input type="text" name="prenom" value="<?= $agent->getPrenom() ?>" id="prenom" class="form-control" minlength="3" maxlength="40">
         <label for="date_de_naissance" class="form-lable"> Date de naissance </label>
-        <input type="text" name="date_de_naissance" value="<?= $agent->getDate_de_naissance() ?>" id="date_de_naissance" class="form-control" minlength="3" maxlength="40">
+        <input type="date" name="date_de_naissance" value="<?= $agent->getDate_de_naissance() ?>" id="date_de_naissance" class="form-control" minlength="3" maxlength="40">
         <label for="nom_identification" class="form-lable"> Nom d'identification</label>
         <input type="text" name="nom_identification" value="<?= $agent->getNom_identification() ?>" id="nom_identification" class="form-control" minlength="3" maxlength="40">
 
@@ -62,15 +63,13 @@ if($_POST){
           <?php endforeach ?>
         </select>
         
-        <label for="specialite" class="form-lable"> Spécialité </label>
-       <select name="specialite" id="specialite" class="form-select">
-        <option value=""> --</option>
+        <label for="specialite" class="form-lable"> Spécialité </label> <br>
           <?php foreach($specialites as $specialite): ?>
-            <option <?=$specialite->getSpecialite() === $agent->getSpecialite()?"selected": "" ?> value="<?= $specialite->getSpecialite()?>"> <?= $specialite->getSpecialite()?> </option>
+            <input type="checkbox" name="specialite[]" <?= $specialite->getSpecialite() === $agent->getSpecialite()?"checked": "" ?> value="<?= $specialite->getSpecialite()?>"> <?= $specialite->getSpecialite()?> </input>
           <?php endforeach ?>
-        </select>
+        <br>
 
-        <input type="submit" class="btn btn-success mt-3" value="Créer"> 
+        <input type="submit" class="btn btn-warning mt-3" value="Modifier"> 
         </form>
 
 

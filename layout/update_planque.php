@@ -56,7 +56,7 @@ if($_POST){
             <option <?=$country->getNationalite() === $planque->getPays()?"selected": "" ?> value="<?= $country->getNationalite()?>"> <?= $country->getNationalite()?> </option>
           <?php endforeach ?>
         </select>
-        <input type="submit" class="btn btn-success mt-3" value="Créer"> 
+        <input type="submit" class="btn btn-warning mt-3" value="Modifier"> 
         </form>
 
 

@@ -40,7 +40,12 @@ class MissionController{
         $req->bindValue(":date_fin",$mission->getDate_fin(), PDO::PARAM_STR);
         $req->execute();
 
-        return $mission;
+        if(!$mission->missionIsValid()){
+            echo "<script>alert(\"Votre mission ne contient pas d'objets valides. Veuillez vérifier les éléments suivants : Spécialité(s) de l'agent(s) / Nationalité des agents ou des contacts / Planque\")</script>";
+        }else{
+            return $mission;
+        }
+        
     }
 
     public function get(int $id)
@@ -80,7 +85,7 @@ class MissionController{
         $req->bindValue(":agent",$mission->getAgent(), PDO::PARAM_STR);
         $req->bindValue(":contact",$mission->getContact(), PDO::PARAM_STR);
         $req->bindValue(":cible",$mission->getCible(), PDO::PARAM_STR);
-        $req->bindValue(":type_Mission",$mission->getType_Mission(), PDO::PARAM_STR);
+        $req->bindValue(":type_mission",$mission->getType_Mission(), PDO::PARAM_STR);
         $req->bindValue(":statut",$mission->getStatut(), PDO::PARAM_STR);
         $req->bindValue(":planque",$mission->getPlanque(), PDO::PARAM_STR);
         $req->bindValue(":specialite",$mission->getSpecialite(), PDO::PARAM_STR);

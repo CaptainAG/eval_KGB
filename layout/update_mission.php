@@ -68,7 +68,7 @@ if($_POST){
         "date_debut"=> $date_debut,
         "date_fin"=>$date_fin,
     ]);
-    $missionController->create($newMission);
+    $missionController->update($newMission);
     header("Location: ./Admin_page.php");
 
 }
@@ -103,7 +103,7 @@ if($_POST){
        <select name="agent" id="agent" class="form-select">
        <option value=""> --</option>
           <?php foreach($agents as $agent): ?>
-            <option <?=$agent->getNom_identification() === $mission->getAgent() ?"selected": "" ?> value="<?= $agent->getNom_identification()?>"> <?= $agent->getNom_identification()?> </option>
+            <option <?=$agent->getNom_identification() === $mission->getAgent() ?"selected": "" ?> value="<?= $agent->getNom_identification()?>"> <?= $agent->getNom_identification().' -- ('. ($agent->getNationalite()).')'?> </option>
           <?php endforeach ?>
         </select>
 
@@ -111,7 +111,7 @@ if($_POST){
        <select name="contact" id="contact" class="form-select">
        <option value=""> --</option>
           <?php foreach($contacts as $contact): ?>
-            <option <?= $contact->getNom_de_code() === $mission->getContact() ?"selected": "" ?> value="<?= $contact->getNom_de_code()?>"> <?= $contact->getNom_de_code()?> </option>
+            <option <?= $contact->getNom_de_code() === $mission->getContact() ?"selected": "" ?> value="<?= $contact->getNom_de_code()?>"> <?= $contact->getNom_de_code().' -- ('. ($contact->getNationalite()).')'?> </option>
           <?php endforeach ?>
         </select>
 
@@ -119,7 +119,7 @@ if($_POST){
        <select name="cible" id="cible" class="form-select">
        <option value=""> --</option>
           <?php foreach($cibles as $cible): ?>
-            <option <?= $cible->getNom_de_code() === $mission->getCible() ?"selected": "" ?> value="<?= $cible->getNom_de_code()?>"> <?= $cible->getNom_de_code()?> </option>
+            <option <?= $cible->getNom_de_code() === $mission->getCible() ?"selected": "" ?> value="<?= $cible->getNom_de_code()?>"> <?= $cible->getNom_de_code().' -- ('. ($cible->getNationalite()).')'?> </option>
           <?php endforeach ?>
         </select>
 
@@ -145,7 +145,7 @@ if($_POST){
        <select name="planque" id="planque" class="form-select">
        <option value=""> --</option>
           <?php foreach($planques as $planque): ?>
-            <option <?= $planque->getCode() === $mission->getPlanque() ?"selected": "" ?> value="<?= $planque->getCode()?>"> <?= $planque->getCode()?> </option>
+            <option <?= $planque->getCode() === $mission->getPlanque() ?"selected": "" ?> value="<?= $planque->getCode()?>"> <?= $planque->getCode().' -- ('. ($planque->getPays()).')'?> </option>
           <?php endforeach ?>
         </select>
         
@@ -163,7 +163,7 @@ if($_POST){
         <label for="date_fin" class="form-lable"> Date de fin </label>
         <input type="text" name="date_fin" value="<?=$mission->getDate_fin() ?>" placeholder="Date de fin" id="date_fin" class="form-control" minlength="3" maxlength="40">
 
-        <input type="submit" class="btn btn-success mt-3" value="Créer"> 
+        <input type="submit" class="btn btn-warning mt-3" value="Modifier"> 
         </form>
 
 

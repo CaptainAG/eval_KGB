@@ -83,7 +83,7 @@ CREATE TABLE Agent
     nationalite VARCHAR(50) NOT NULL,
     FOREIGN KEY (nationalite) REFERENCES Pays(nationalite),
     specialite VARCHAR(50) NOT NULL,
-    FOREIGN KEY (specialite) REFERENCES Specialite(dpecialite)
+    
 
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -98,17 +98,17 @@ CREATE TABLE Mission
     pays VARCHAR(50) NOT NULL,
     FOREIGN KEY (Pays) REFERENCES Pays(Nationalite),
     agent VARCHAR(50) NOT NULL,
-    FOREIGN KEY (Agent) REFERENCES Agent(nom_identification),
+    
     contact VARCHAR(50) NOT NULL,
-    FOREIGN KEY (Contact) REFERENCES Contact(Nom_de_code),
+    
     cible VARCHAR(50) NOT NULL,
-    FOREIGN KEY (Cible) REFERENCES Cible(Nom_de_code),
+   
     type_mission VARCHAR(50) NOT NULL,
     FOREIGN KEY (Type_mission) REFERENCES Type_Mission(types),
     statut VARCHAR(50) NOT NULL,
     FOREIGN KEY (Statut) REFERENCES Statut(Statut),
-    planque VARCHAR(50) NOT NULL,
-    FOREIGN KEY (Planque) REFERENCES Planque(Code),
+    planque VARCHAR(50),
+    
     specialite VARCHAR(50) NOT NULL,
     FOREIGN KEY (Specialite) REFERENCES Specialite(Specialite),
     date_debut VARCHAR(50) NOT NULL,
@@ -132,6 +132,7 @@ CREATE TABLE Admin
 insert into  Admin (nom, prenom, email, password, date_creation)
 values
 ('John','Doe', 'JohnDoe@gmail.com','$2y$10$qW5O02qav3PkTkErlWUFtuJvBygOyMdtViIRPIcs0wCqFDlzrb6yi','23/10/2021');
+
 
 
 insert into Statut (statut)

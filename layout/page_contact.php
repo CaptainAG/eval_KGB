@@ -16,31 +16,33 @@ $error= null;
                 <div class=" d-flex justify-content-center">
                 <a href='./create_contact.php' class="btn btn-success">Ajouter un contact</a>
                 </div>
-                <table class="table table-striped table-hover table-responsive text-center">
-                    <thead>
-                        <tr>
-                            <th scope="col">Nom</th>
-                            <th scope="col">Prénom</th>
-                            <th scope="col">Date de naissance</th>
-                            <th scope="col">Nom de code</th>
-                            <th scope="col">Nationnalité</th>
-                            <th scope="col">Modifier</th>
-                            <th scope="col">Supprimer</th>
-                        </tr>
-                    </thead>
-		            <tbody>
-                        <?php foreach($contacts as $contact): ?>
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover table-responsive text-center">
+                        <thead>
                             <tr>
-                                <td scope="row"> <?= $contact->getNom() ?> </td>
-                                <td> <?= $contact->getPrenom() ?> </td>
-                                <td> <?= $contact->getDate_de_naissance() ?> </td>
-                                <td> <?= $contact->getNom_de_code() ?> </td>
-                                <td> <?= $contact->getNationalite() ?> </td>
-                                <td> <a href="update_contact.php?id=<?= $contact->getId() ?>" class="btn btn-warning">Modifier</a> </td>
-                                <td> <a href="delete_contact.php?id=<?= $contact->getId()?>" class="btn btn-danger">Supprimer</a> </td>
+                                <th scope="col">Nom</th>
+                                <th scope="col">Prénom</th>
+                                <th scope="col">Date de naissance</th>
+                                <th scope="col">Nom de code</th>
+                                <th scope="col">Nationnalité</th>
+                                <th scope="col">Modifier</th>
+                                <th scope="col">Supprimer</th>
                             </tr>
-                        <?php endforeach ?>
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            <?php foreach($contacts as $contact): ?>
+                                <tr>
+                                    <td scope="row"> <?= $contact->getNom() ?> </td>
+                                    <td> <?= $contact->getPrenom() ?> </td>
+                                    <td> <?= $contact->getDate_de_naissance() ?> </td>
+                                    <td> <?= $contact->getNom_de_code() ?> </td>
+                                    <td> <?= $contact->getNationalite() ?> </td>
+                                    <td> <a href="update_contact.php?id=<?= $contact->getId() ?>" class="btn btn-warning">Modifier</a> </td>
+                                    <td> <a href="delete_contact.php?id=<?= $contact->getId()?>" class="btn btn-danger">Supprimer</a> </td>
+                                </tr>
+                            <?php endforeach ?>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>

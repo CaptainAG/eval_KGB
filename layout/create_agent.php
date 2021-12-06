@@ -14,6 +14,7 @@ $countrys= $countryController-> getAll();
 $specialites= $specialiteController->getAll();
 $error= null;
 
+
 if($_POST){
     $nom= $_POST["nom"];
     $prenom= $_POST["prenom"];
@@ -22,18 +23,21 @@ if($_POST){
     $nationalite=$_POST["nationalite"];
     $specialite=$_POST["specialite"];
 
+    $toutSpecialite= implode("--",$specialite);
+
     $newAgent= new Agent([
         "nom"=>$nom,
         "prenom"=>$prenom,
         "date_de_naissance"=>$date_de_naissance,
         "nom_identification"=>$nom_identification,
         "nationalite"=>$nationalite,
-        "specialite"=>$specialite,
+        "specialite"=>$toutSpecialite,
     ]);
     $agentController->create($newAgent);
     header("Location: ./page_agent.php");
 
 }
+
 
 ?>
 
@@ -61,17 +65,14 @@ if($_POST){
           <?php endforeach ?>
         </select>
         
-        <label for="specialite" class="form-lable"> Spécialité </label>
-       <select name="specialite" id="specialite" class="form-select">
-        <option value=""> --</option>
-          <?php foreach($specialites as $specialite): ?>
-            <option value="<?= $specialite->getSpecialite()?>"> <?= $specialite->getSpecialite()?> </option>
-          <?php endforeach ?>
-        </select>
-
-        <input type="submit" class="btn btn-success mt-3" value="Créer"> 
+        <label for="specialite" class="form-lable"> Spécialité </label> <br>
+        <?php foreach($specialites as $specialite): ?>
+            <input type="checkbox" name="specialite[]" value="<?= $specialite->getSpecialite()?>"> <?= $specialite->getSpecialite()?> </input> <br>
+        <?php endforeach ?> <br>
         
 
+        <input type="submit" name="valider" class="btn btn-success mt-3" value="Créer"> 
+        
 
 </form>
 

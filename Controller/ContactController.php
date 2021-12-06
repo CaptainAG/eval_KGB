@@ -59,7 +59,7 @@ class ContactController{
     }
 
     public function update(Contact $contact){
-        $req= $this->db->prepare("UPDATE `Contact` SET nom=:nom, prenom=:prenom,date_de_naissance=:date_de_naissance,nom_de_code=:nom_de_code, nationalite= :nationalite");
+        $req= $this->db->prepare("UPDATE `Contact` SET nom=:nom, prenom=:prenom,date_de_naissance=:date_de_naissance,nom_de_code=:nom_de_code, nationalite= :nationalite WHERE id=$_GET[id]");
 
         $req->bindValue(":nom",$contact->getNom(), PDO::PARAM_STR);
         $req->bindValue(":prenom",$contact->getPrenom(), PDO::PARAM_STR);

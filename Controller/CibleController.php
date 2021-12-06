@@ -34,7 +34,7 @@ class CibleController{
 
     public function get(int $id)
     {
-        $req= $this->db->prepare("SELECT * FROM `Cible` WHERE id =:id ");
+        $req= $this->db->prepare("SELECT * FROM `Cible` WHERE id = :id ");
         $req->execute([":id" => $id]);
         $data= $req->fetch();
         $cible = new Cible($data);
@@ -59,9 +59,9 @@ class CibleController{
     }
 
     public function update(Cible $cible){
-        $req= $this->db->prepare("UPDATE `Cible` SET nom=:nom, prenom=:prenom,date_de_naissance=:date_de_naissance,dom_de_code=:dom_de_code, dationalite= :dationalite");
+        $req= $this->db->prepare("UPDATE `Cible` SET nom=:nom, prenom=:prenom,date_de_naissance=:date_de_naissance,nom_de_code=:nom_de_code, nationalite= :nationalite WHERE id=$_GET[id]");
 
-        $req->bindValue(":dom",$cible->getNom(), PDO::PARAM_STR);
+        $req->bindValue(":nom",$cible->getNom(), PDO::PARAM_STR);
         $req->bindValue(":prenom",$cible->getPrenom(), PDO::PARAM_STR);
         $req->bindValue(":date_de_naissance",$cible->getDate_de_naissance(), PDO::PARAM_STR);
         $req->bindValue(":nom_de_code",$cible->getnom_de_code(), PDO::PARAM_STR);
