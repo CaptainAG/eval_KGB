@@ -22,9 +22,9 @@ class SpecialiteController{
     }
 
     public function create(Specialite $specialite){
-        $req= $this->db->prepare("INSERT INTO `Specialite`(Specialite) VALUE (:Specialite)");
+        $req= $this->db->prepare("INSERT INTO `Specialite`(specialite) VALUE (:specialite)");
 
-        $req->bindValue(":Specialite",$specialite->getSpecialite(), PDO::PARAM_STR);
+        $req->bindValue(":specialite",$specialite->getSpecialite(), PDO::PARAM_STR);
         $req->execute();        
     }
 

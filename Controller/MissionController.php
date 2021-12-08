@@ -40,11 +40,11 @@ class MissionController{
         $req->bindValue(":date_fin",$mission->getDate_fin(), PDO::PARAM_STR);
         $req->execute();
 
-        if(!$mission->missionIsValid()){
-            echo "<script>alert(\"Votre mission ne contient pas d'objets valides. Veuillez vérifier les éléments suivants : Spécialité(s) de l'agent(s) / Nationalité des agents ou des contacts / Planque\")</script>";
-        }else{
-            return $mission;
-        }
+        
+        
+        return $mission;
+        
+        
         
     }
 

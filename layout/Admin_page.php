@@ -9,7 +9,9 @@ $controller= new MissionController();
 $missions= $controller->getAll();
 $error= null;
 
-require("../asset/navbar.php")
+require("../asset/navbar.php");
+
+
 
 ?>
         <div class="container-xxl">
@@ -18,6 +20,7 @@ require("../asset/navbar.php")
                 <div class="boutton d-flex justify-content-between" >
                 <a href="./create_admin.php" class="btn btn-primary">Ajouter un admin</a>  
                 <a href="./create_type.php" class="btn btn-info">Ajouter un type de mission</a>  
+                <a href="./create_specialite.php" class="btn btn-secondary">Ajouter une spécialité</a>
                 <a href="./create_mission.php" class="btn btn-dark">Ajouter une Mission</a>
                 </div>
                 <div class="table-responsive">

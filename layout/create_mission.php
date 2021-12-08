@@ -34,29 +34,58 @@ $statuts=$statutController->getAll();
   
 $error= null;
 
-
-
-
-
-
 if($_POST){
     $titre= $_POST["titre"];
     $description= $_POST["description"];
     $nom_de_code=$_POST["nom_de_code"];
     $pays=$_POST["pays"];
     $agent=$_POST["agent"];
-    $toutAgent=implode("--",$agent);
+    $toutAgent=implode("<br>",$agent);
     $contact=$_POST["contact"];
-    $toutContact=implode("--",$contact);
+    $toutContact=implode("<br>",$contact);
     $cible=$_POST["cible"];
-    $toutCible=implode("--",$cible);
+    $toutCible=implode("<br>",$cible);
     $type_mission=$_POST["type_mission"];
     $statut=$_POST["statut"];
     $planque=$_POST["planque"];
-    $toutPlanque=implode("--",$planque);
+    $toutPlanque=implode("<br>",$planque);
     $specialite=$_POST["specialite"];
     $date_debut=$_POST["date_debut"];
     $date_fin=$_POST["date_fin"];
+  
+    try{
+     
+      foreach($contacts as $contact) {
+        if ($pays != $contact->getNationalite()) {
+            throw new Exception("Votre mission ne contient pas d'objets valides.Veuillez vérifier les nationalités des contacts");
+        }
+      }
+
+      foreach($planques as $planque){
+        if($pays != $planque->getPays()){
+          throw new Exception("Votre mission ne contient pas d'objets valides.Veuillez vérifier le pays de la planque ");
+        }
+      }
+
+      $validSpecialiteAgents = 0;
+      foreach($agents as $agent){
+        if (in_array($specialite->getSpecialite(), $agent->getSpecialite())) {
+          $validSpecialiteAgents += 1;
+      }
+        if ($validSpecialiteAgents == 0) {
+          throw new Exception("Votre mission ne contient pas d'objets valides.Veuillez vérifier les spécialité ");
+      }
+      if ($agent->getNationalite() == $cible->getNationalite()) {
+        throw new Exception("Votre mission ne contient pas d'objets valides.Veuillez vérifier la nationalité des agents et des cibles  ");
+      }
+
+      }
+
+    }catch(Exception $e){
+      $error= $e->getMessage();
+    }
+
+
 
     $newMission= new Mission([
         "titre"=>$titre,
@@ -73,11 +102,12 @@ if($_POST){
         "date_debut"=> $date_debut,
         "date_fin"=>$date_fin,
     ]);
+
     $missionController->create($newMission);
-    header("Location: ./Admin_page.php");
+      header("Location: ./Admin_page.php");
 
+    
 }
-
 
 
 
@@ -165,7 +195,7 @@ if($_POST){
         <label for="date_fin" class="form-lable"> Date de fin </label>
         <input type="date" name="date_fin" placeholder="Date de fin" id="date_fin" class="form-control" minlength="3" maxlength="40">
 
-        <input type="submit" class="btn btn-success mt-3" value="Créer"> 
+        <input type="submit" name="valider" class="btn btn-success mt-3" value="Créer"> 
         </form>
 
 
