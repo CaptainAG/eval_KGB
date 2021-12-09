@@ -18,10 +18,10 @@ require("../asset/navbar.php");
             <div class="row justify-content-center text-center">
                 <h1>Missions</h1>
                 <div class="boutton d-flex flex-column flex-md-row  justify-content-between" >
-                <a href="./create_admin.php" class="btn btn-primary">Ajouter un admin</a>  
-                <a href="./create_type.php" class="btn btn-info">Ajouter un type de mission</a>  
-                <a href="./create_specialite.php" class="btn btn-secondary">Ajouter une spécialité</a>
-                <a href="./create_mission.php" class="btn btn-dark">Ajouter une Mission</a>
+                <a href="./create_admin.php" class="btn btn-primary my-2">Ajouter un admin</a>  
+                <a href="./create_type.php" class="btn btn-info my-2">Ajouter un type de mission</a>  
+                <a href="./create_specialite.php" class="btn btn-secondary my-2">Ajouter une spécialité</a>
+                <a href="./create_mission.php" class="btn btn-dark my-2">Ajouter une Mission</a>
                 </div>
                 <div class="table-responsive">
                     <table class="table table-striped table-hover table-responsive text-center">
