@@ -17,7 +17,7 @@ require("../asset/navbar.php");
         <div class="container-xxl">
             <div class="row justify-content-center text-center">
                 <h1>Missions</h1>
-                <div class="boutton d-flex justify-content-between" >
+                <div class="boutton d-flex flex-column flex-md-row  justify-content-between" >
                 <a href="./create_admin.php" class="btn btn-primary">Ajouter un admin</a>  
                 <a href="./create_type.php" class="btn btn-info">Ajouter un type de mission</a>  
                 <a href="./create_specialite.php" class="btn btn-secondary">Ajouter une spécialité</a>

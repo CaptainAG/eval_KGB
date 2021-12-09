@@ -2,7 +2,9 @@
 
 require("Admin.php");
 
+
 class AdminController{
+
     private $db;
 
     public function __construct()

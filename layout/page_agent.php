@@ -49,3 +49,4 @@ $error= null;
                 </div>
             </div>
         </div>
+        <?php require("../asset/footer.php") ?>
